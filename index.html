@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma3lina</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 15px #ffae00, 0 0 25px #ffae00; }
+      100% { text-shadow: 0 0 25px #ff4500, 0 0 40px #ff4500; }
+    }
+
+    /* Texte d'introduction plus attractif */
+    .click-text {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 50px;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.2); }
+    }
+
+    /* Style du bouton voiture avec animation */
+    .car-button {
+      width: 400px;
+      height: 200px;
+      background-image: url('https://images.unsplash.com/photo-1625243756289-1871e3048536?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 15px;
+      position: relative;
+      margin: 0 auto;
+      animation: move 0.5s infinite alternate;
+      cursor: pointer;
+      border: none;
+    }
+
+    .car-button:hover {
+      opacity: 0.8;
+    }
+
+    @keyframes move {
+      0% { transform: translateX(-15px); }
+      100% { transform: translateX(15px); }
+    }
+
+    /* Style pour la question et les réponses */
+    .question {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 30px;
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .answers {
+      display: none;
+    }
+
+    /* Animation des boutons de réponses pour les rendre difficiles à cliquer */
+    .answers button {
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      margin: 10px;
+      background-color: #4caf50;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: shake 0.3s infinite alternate;
+    }
+
+    .answers button:hover {
+      background-color: #45a049;
+    }
+
+    /* Bouton Ah Baqi en rouge avec emoji de tristesse */
+    .red-button {
+      background-color: #ff4040;
+      font-size: 1.5rem;
+      color: white;
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .red-button:hover {
+      background-color: #e63838;
+    }
+
+    /* Bouton La Safe avec emoji de célibataire */
+    .green-button {
+      background-color: #008000;
+      font-size: 1.5rem;
+      color: white;
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .green-button:hover {
+      background-color: #006400;
+    }
+
+  </style>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init();
+
+    function sendResponse(answer) {
+      const templateParams = {
+        answer: answer
+      };
+
+      emailjs.send("service_2bg3h69", "template_3b3qhu8", templateParams)
+        .then(function(response) {
+          alert('Réponse envoyée avec succès !');
+        }, function(error) {
+          alert('Échec de l\'envoi. Veuillez réessayer.');
+        });
+    }
+
+    function showQCM() {
+      // Hide the button and "click here" text, then show the QCM content
+      document.querySelector('.click-text').style.display = 'none';
+      document.getElementById('startButton').style.display = 'none';
+      document.querySelector('.question').style.display = 'block';
+      document.querySelector('.answers').style.display = 'block';
+    }
+  </script>
+</head>
+<body>
+  <h1>Merry Christmas Fati !!!</h1>
+
+  <!-- Texte d'introduction attractif -->
+  <p class="click-text">Click here to start!</p>
+
+  <!-- Bouton avec image de la Porsche 911 GT3RS -->
+  <div id="startButton" class="car-button" onclick="showQCM()"></div>
+
+  <!-- Contenu du QCM -->
+  <p class="question">2025 hadi wach mazal ?!</p>
+  <div class="answers">
+    <!-- Bouton Ah Baqi en rouge avec emoji de tristesse -->
+    <button class="red-button" onclick="sendResponse('Ah Baqi')">Ah Baqi 😞</button>
+    <!-- Bouton La Safe avec emoji de célibataire -->
+    <button class="green-button" onclick="sendResponse('La Safe')">La Safe 💔</button>
+  </div>
+</body>
+</html>
+
